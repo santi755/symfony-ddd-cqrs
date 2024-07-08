@@ -3,7 +3,7 @@
 namespace App\auth\infrastructure\repositories;
 
 use App\auth\domain\User;
-use App\auth\domain\UserUuid;
+use App\auth\domain\UserId;
 
 class DoctrineUserRepository
 {
@@ -12,7 +12,7 @@ class DoctrineUserRepository
         echo 'Saving user';
     }
 
-    public function search(UserUuid $userId): ?User
+    public function search(UserId $userId): ?User
     {
         echo 'Searching user';
 

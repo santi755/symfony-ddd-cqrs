@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LoginController extends AbstractController
 {
-    #[Route('/login', methods: ['GET'], name: 'login')]
+    #[Route('/auth/login', methods: ['POST'], name: 'login')]
     public function execute(): JsonResponse
     {
         return new JsonResponse(['message' => 'Login']);
