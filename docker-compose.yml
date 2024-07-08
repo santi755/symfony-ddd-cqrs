@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     restart: always
@@ -31,7 +29,7 @@ services:
     build:
       context: ./docker/php
       args:
-        PHP_VERSION: ${PHP_VERSION}  
+        PHP_VERSION: ${PHP_VERSION}
     environment:
       # Symfony Config
       - APP_ENV=${APP_ENV}
