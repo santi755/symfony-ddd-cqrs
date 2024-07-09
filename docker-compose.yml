@@ -2,7 +2,6 @@ services:
   postgres:
     restart: always
     image: postgres
-    user: "${USER_UID}:${USER_GID}"
     container_name: "${DATABASE_CONTAINER_NAME}"
     ports:
       - "5432:5432"
