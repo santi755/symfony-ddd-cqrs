@@ -5,7 +5,7 @@ namespace App\Auth\Infrastructure\Symfony\Controllers;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Shared\Domain\Serializer;
+use App\Shared\Domain\Serializer\Serializer;
 
 use App\Auth\Infrastructure\Symfony\Controllers\Request\RegisterUserRequest;
 

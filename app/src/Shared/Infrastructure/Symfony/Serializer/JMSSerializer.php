@@ -2,7 +2,7 @@
 
 namespace App\Shared\Infrastructure\Symfony\Serializer;
 
-use App\Shared\Domain\Serializer;
+use App\Shared\Domain\Serializer\Serializer;
 use JMS\Serializer\ArrayTransformerInterface;
 
 class JMSSerializer implements Serializer
