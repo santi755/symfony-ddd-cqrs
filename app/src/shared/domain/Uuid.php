@@ -6,25 +6,36 @@ use Ramsey\Uuid\Uuid as RamseyUuid;
 
 class Uuid
 {
-    private string $value;
-
-    public function __construct(string $value)
+    protected function __construct(private string $value)
     {
-        $this->value = $value;
     }
 
-    public static function random(): self
+    public static function generate(): Uuid
     {
-        return new self(RamseyUuid::uuid4()->toString());
+        return new Uuid(RamseyUuid::uuid4()->toString());
     }
 
-    public function value(): string
+    public static function fromPrimitive(string $value): static
+    {
+        if (!is_string($value) || !RamseyUuid::isValid($value)) {
+            throw new \InvalidArgumentException('Invalid UUID');
+        }
+
+        return new Uuid($value);
+    }
+
+    public static function of(string $value): static
+    {
+        return new Uuid($value);
+    }
+
+    public function getValue(): string
     {
         return $this->value;
     }
 
     public function equals(Uuid $uuid): bool
     {
-        return $this->value() === $uuid->value();
+        return $this->value === $uuid->getValue();
     }
 }

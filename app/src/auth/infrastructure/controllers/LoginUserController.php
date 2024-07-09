@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LoginController extends AbstractController
+class LoginUserController extends AbstractController
 {
     #[Route('/auth/login', methods: ['POST'], name: 'login')]
     public function execute(): JsonResponse

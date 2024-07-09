@@ -10,13 +10,13 @@ class RegisterUserRequest extends AbstractJsonRequest
 
     #[Assert\NotBlank()]
     #[Assert\Type('string')]
-    public readonly string $firstName;
+    public readonly string $name;
 
     #[Assert\NotBlank]
     #[Assert\Type('string')]
-    public readonly string $lastName;
+    public readonly string $email;
 
-    #[Assert\GreaterThan(18)]
-    #[Assert\Type('int')]
-    public readonly int $age;
+    #[Assert\NotBlank]
+    #[Assert\Type('string')]
+    public readonly string $password;
 }

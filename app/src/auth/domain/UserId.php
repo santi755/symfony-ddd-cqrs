@@ -4,10 +4,16 @@ namespace App\auth\domain;
 
 use App\shared\domain\Uuid;
 
-class UserId extends Uuid
+class UserId
 {
-    public function __construct(string $value)
+    public function __construct(private Uuid $value)
     {
-        parent::__construct($value);
+    }
+
+    public static function generate(): UserId
+    {
+        $uuid = Uuid::generate();
+
+        return new UserId($uuid);
     }
 }
