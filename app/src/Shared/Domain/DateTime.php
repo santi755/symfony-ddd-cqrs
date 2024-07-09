@@ -18,12 +18,12 @@ class DateTime
     public static function fromPrimitive(string $value): static
     {
         if (!is_string($value)) {
-            throw new \InvalidArgumentException('Invalid argument type. Expected string.');
+            throw new \InvalidArgumentException('Invalid argument type. Expected string.'); // TODO: Create a custom exception
         }
 
         $dateTime = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $value);
         if (!$dateTime) {
-            throw new \InvalidArgumentException('Invalid date format.');
+            throw new \InvalidArgumentException('Invalid date format.'); // TODO: Create a custom exception
         }
         return new self($dateTime);
     }
@@ -31,7 +31,7 @@ class DateTime
     public static function of(DateTimeImmutable $value): static
     {
         if (!($value instanceof DateTimeImmutable)) {
-            throw new \InvalidArgumentException('Invalid argument type. Expected DateTimeImmutable.');
+            throw new \InvalidArgumentException('Invalid argument type. Expected DateTimeImmutable.'); // TODO: Create a custom exception
         }
 
         return new self($value);
