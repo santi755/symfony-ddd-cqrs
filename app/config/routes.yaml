@@ -1,5 +1,5 @@
 auth_controllers:
   resource:
-    path: ../src/auth/infrastructure/controllers
-    namespace: App\auth\infrastructure\controllers
+    path: ../src/Auth/Infrastructure/Symfony/Controllers
+    namespace: App\Auth\Infrastructure\Symfony\Controllers
   type: attribute
