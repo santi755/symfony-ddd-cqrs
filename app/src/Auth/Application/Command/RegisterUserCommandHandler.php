@@ -10,11 +10,13 @@ use App\Auth\Domain\UserEmail;
 use App\Auth\Domain\UserId;
 use App\Auth\Domain\UserPassword;
 use App\Shared\Domain\Serializer\Serializer;
+use App\Auth\Domain\UserRepository;
 
 class RegisterUserCommandHandler
 {
     public function __construct(
-        private Serializer $serializer
+        private Serializer $serializer,
+        private UserRepository $userRepository
     ) {
     }
 
@@ -32,7 +34,7 @@ class RegisterUserCommandHandler
             null
         );
 
-        var_dump($user);
-        die();
+        $this->userRepository->save($user);
+        $users = $this->userRepository->findAll();
     }
 }
