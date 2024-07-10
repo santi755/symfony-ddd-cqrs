@@ -10,7 +10,7 @@ class LoginUser
     {
     }
 
-    public function execute(): void
+    public function __invoke(): void
     {
         echo 'Logging in user';
     }

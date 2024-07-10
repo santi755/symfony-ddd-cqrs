@@ -8,5 +8,5 @@ use App\Auth\Domain\User;
 interface UserRepository
 {
     public function save(User $user): void;
-    public function search(UserId $userId): ?User;
+    public function find(UserId $userId): ?User;
 }

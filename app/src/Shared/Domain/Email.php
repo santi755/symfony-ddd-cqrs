@@ -14,7 +14,7 @@ class Email
 
     public static function fromPrimitive(string $emailString): Email
     {
-        return new Email($emailString);
+        return new static($emailString);
     }
 
     public function getValue(): string

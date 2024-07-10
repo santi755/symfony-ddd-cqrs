@@ -2,27 +2,20 @@
 
 namespace App\Auth\Infrastructure\Persistence\Doctrine\Repositories;
 
-use App\Auth\Infrastructure\Persistence\Doctrine\Entities\User;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Auth\Domain\User;
+use App\Auth\Domain\UserId;
+use App\Auth\Domain\UserRepository;
+use App\Shared\Infrastructure\Persistence\Doctrine\Repository\DoctrineRepository;
 
-class DoctrineUserRepository extends ServiceEntityRepository
+class DoctrineUserRepository extends DoctrineRepository implements UserRepository
 {
-    public function __construct(
-        ManagerRegistry $registry
-    ) {
-        parent::__construct($registry, User::class);
+    public function save(User $user): void
+    {
+        $this->persist($user);
     }
 
-    public function save(): void
+    public function find(UserId $userId): ?User
     {
-        echo 'Saving user';
-    }
-
-    public function search(): ?User
-    {
-        echo 'Searching user';
-
-        return null;
+        return $this->repository(User::class)->find($userId);
     }
 }

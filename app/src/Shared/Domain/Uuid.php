@@ -12,7 +12,7 @@ class Uuid
 
     public static function generate(): Uuid
     {
-        return new Uuid(RamseyUuid::uuid4()->toString());
+        return new static(RamseyUuid::uuid4()->toString());
     }
 
     public static function fromPrimitive(string $value): static
@@ -21,12 +21,12 @@ class Uuid
             throw new \InvalidArgumentException('Invalid UUID');
         }
 
-        return new Uuid($value);
+        return new static($value);
     }
 
     public static function of(string $value): static
     {
-        return new Uuid($value);
+        return new static($value);
     }
 
     public function getValue(): string

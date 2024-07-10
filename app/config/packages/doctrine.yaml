@@ -8,6 +8,19 @@ doctrine:
 
     profiling_collect_backtrace: "%kernel.debug%"
     use_savepoints: true
+    types:
+      user_id:
+        class: App\Auth\Infrastructure\Persistence\Doctrine\Types\UserIdType
+      user_email:
+        class: App\Auth\Infrastructure\Persistence\Doctrine\Types\UserEmailType
+      user_password:
+        class: App\Auth\Infrastructure\Persistence\Doctrine\Types\UserPasswordType
+      user_created_at:
+        class: App\Auth\Infrastructure\Persistence\Doctrine\Types\UserCreatedAtType
+      user_updated_at:
+        class: App\Auth\Infrastructure\Persistence\Doctrine\Types\UserUpdatedAtType
+      user_deleted_at:
+        class: App\Auth\Infrastructure\Persistence\Doctrine\Types\UserDeletedAtType
   orm:
     auto_generate_proxy_classes: true
     enable_lazy_ghost_objects: true
@@ -16,12 +29,12 @@ doctrine:
     naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
     auto_mapping: true
     mappings:
-      Auth:
-        type: attribute
+      User:
+        type: xml
         is_bundle: false
-        dir: "%kernel.project_dir%/src/Auth/Infrastructure/Persistence/Doctrine/Entities"
-        prefix: 'App\Auth\Infrastructure\Persistence\Doctrine\Entities'
-        alias: Auth
+        dir: "%kernel.project_dir%/src/Auth/Infrastructure/Persistence/Doctrine/Mapping"
+        prefix: 'App\Auth\Domain'
+        alias: User
     controller_resolver:
       auto_mapping: false
 

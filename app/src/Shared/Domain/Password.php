@@ -15,12 +15,12 @@ class Password
 
     public static function fromPrimitive(string $value): Password
     {
-        return new Password($value);
+        return new static($value);
     }
 
     public static function of(string $value): Password
     {
-        return new Password($value);
+        return new static($value);
     }
 
     public function getValue(): string

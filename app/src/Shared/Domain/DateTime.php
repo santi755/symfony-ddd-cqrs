@@ -12,7 +12,7 @@ class DateTime
 
     public static function generate(): static
     {
-        return new self(new DateTimeImmutable());
+        return new static(new DateTimeImmutable());
     }
 
     public static function fromPrimitive(string $value): static
@@ -25,7 +25,7 @@ class DateTime
         if (!$dateTime) {
             throw new \InvalidArgumentException('Invalid date format.'); // TODO: Create a custom exception
         }
-        return new self($dateTime);
+        return new static($dateTime);
     }
 
     public static function of(DateTimeImmutable $value): static
@@ -34,7 +34,7 @@ class DateTime
             throw new \InvalidArgumentException('Invalid argument type. Expected DateTimeImmutable.'); // TODO: Create a custom exception
         }
 
-        return new self($value);
+        return new static($value);
     }
 
     public function getValue(): DateTimeImmutable

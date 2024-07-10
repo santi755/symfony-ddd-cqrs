@@ -2,41 +2,35 @@
 
 namespace App\Auth\Infrastructure\Symfony\Controllers;
 
+use App\Auth\Application\Command\RegisterUserCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Shared\Domain\Serializer\Serializer;
 
 use App\Auth\Infrastructure\Symfony\Controllers\Request\RegisterUserRequest;
-
-use App\Auth\Domain\UserId;
-use App\Auth\Domain\UserEmail;
-use App\Auth\Domain\UserPassword;
-use App\Auth\Domain\UserDateTime;
-use App\Auth\Domain\User;
+use App\Auth\Application\Command\RegisterUserCommandHandler;
 
 class RegisterUserController extends AbstractController
 {
     public function __construct(
-        private Serializer $serializer
+        private Serializer $serializer,
+        private RegisterUserCommandHandler $registerUserCommandHandler
     ) {
     }
 
     #[Route('/auth/register', methods: ['POST'])]
     public function __invoke(RegisterUserRequest $userDTO): JsonResponse
     {
-        $user = new User(
-            UserId::generate(),
-            $userDTO->name,
-            UserEmail::fromPrimitive($userDTO->email),
-            UserPassword::fromPrimitive($userDTO->password),
-            UserDateTime::generate(),
-            UserDateTime::generate(),
-            null
-        );
+        $user = [
+            "name" => $userDTO->name,
+            "email" => $userDTO->email,
+            "password" => $userDTO->password
+        ];
 
-        $userSerialized = $this->serializer->serialize($user);
+        $registerUserCommand = $this->serializer->deserialize($user, RegisterUserCommand::class);
+        $this->registerUserCommandHandler->__invoke($registerUserCommand);
 
-        return new JsonResponse($userSerialized, JsonResponse::HTTP_CREATED);
+        return new JsonResponse('Doing...', JsonResponse::HTTP_CREATED);
     }
 }
