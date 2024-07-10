@@ -46,4 +46,9 @@ class DateTime
     {
         return $this->value == $dateTime->getValue();
     }
+
+    public function __toString(): string
+    {
+        return $this->value->format('Y-m-d H:i:s');
+    }
 }

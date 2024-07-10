@@ -12,6 +12,7 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
     public function save(User $user): void
     {
         $this->persist($user);
+        $this->entityManager()->flush();
     }
 
     public function find(UserId $userId): ?User

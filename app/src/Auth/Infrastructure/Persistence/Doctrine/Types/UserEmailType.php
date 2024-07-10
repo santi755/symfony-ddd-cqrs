@@ -10,7 +10,7 @@ final class UserEmailType extends StringType
 {
     public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
-        return $value->getValue();
+        return $value->__toString();
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform): UserEmail

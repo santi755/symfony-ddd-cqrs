@@ -35,6 +35,5 @@ class RegisterUserCommandHandler
         );
 
         $this->userRepository->save($user);
-        $users = $this->userRepository->findAll();
     }
 }

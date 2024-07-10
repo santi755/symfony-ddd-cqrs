@@ -8,9 +8,13 @@ use Doctrine\DBAL\Types\StringType;
 
 final class UserDeletedAtType extends StringType
 {
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
-        return $value->getValue();
+        if (null === $value) {
+            return null;
+        }
+
+        return $value->__toString();
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform): UserDeletedAt
