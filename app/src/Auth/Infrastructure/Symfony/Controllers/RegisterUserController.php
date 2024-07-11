@@ -19,7 +19,7 @@ class RegisterUserController extends AbstractController
     ) {
     }
 
-    #[Route('/auth/register', methods: ['POST'])]
+    #[Route('/api/auth/register', methods: ['POST'])]
     public function __invoke(RegisterUserRequest $userDTO): JsonResponse
     {
         $user = [

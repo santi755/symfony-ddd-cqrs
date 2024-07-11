@@ -19,7 +19,7 @@ class LoginUserController extends AbstractController
     ) {
     }
 
-    #[Route('/auth/login', methods: ['POST'], name: 'login')]
+    #[Route('/api/auth/login', methods: ['POST'], name: 'login')]
     public function __invoke(LoginUserRequest $userDTO): JsonResponse
     {
         $user = [
