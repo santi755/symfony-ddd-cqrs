@@ -7,7 +7,7 @@
     <entity name="App\Auth\Domain\User" table="users">
         <id name="id" type="user_id" column="id" />
         <field name="name" type="string" column="name" length="255" nullable="false"/>
-        <field name="email" type="user_email" column="email" length="255" nullable="false"/>
+        <field name="email" type="user_email" column="email" length="255" nullable="false" unique="true"/>
         <field name="password" type="user_password" column="auth_password" length="255" nullable="false"/>
         <field name="createdAt" type="user_created_at" column="created_at" nullable="false"/>
         <field name="updatedAt" type="user_updated_at" column="updated_at" nullable="true"/>

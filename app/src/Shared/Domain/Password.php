@@ -15,7 +15,11 @@ class Password
 
     public static function fromPrimitive(string $value): Password
     {
-        return new static($value);
+        if (strlen($value) < 8) {
+            throw new \InvalidArgumentException('Password must be at least 8 characters long');
+        }
+
+        return new static(password_hash($value, PASSWORD_BCRYPT));
     }
 
     public static function of(string $value): Password
