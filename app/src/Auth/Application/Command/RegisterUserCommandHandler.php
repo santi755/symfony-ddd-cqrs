@@ -28,12 +28,13 @@ class RegisterUserCommandHandler
             UserId::generate(),
             $user['name'],
             UserEmail::fromPrimitive($user['email']),
-            UserPassword::fromPrimitive($user['password']),
+            UserPassword::generate($user['password']),
             UserCreatedAt::generate(),
             UserUpdatedAt::generate(),
             null
         );
 
+        // TODO: Check is the user already exists (by email)
         $this->userRepository->save($user);
     }
 }

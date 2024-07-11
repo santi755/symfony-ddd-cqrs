@@ -9,5 +9,6 @@ interface UserRepository
 {
     public function save(User $user): void;
     public function find(UserId $userId): ?User;
+    public function findOneBy(array $criteria): ?User;
     public function findAll(): array;
 }

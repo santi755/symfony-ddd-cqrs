@@ -2,15 +2,34 @@
 
 namespace App\Auth\Infrastructure\Symfony\Controllers;
 
+use App\Auth\Application\Command\LoginUserCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Shared\Domain\Serializer\Serializer;
+
+use App\Auth\Infrastructure\Symfony\Controllers\Request\LoginUserRequest;
+use App\Auth\Application\Command\LoginUserCommandHandler;
 
 class LoginUserController extends AbstractController
 {
+    public function __construct(
+        private Serializer $serializer,
+        private LoginUserCommandHandler $loginUserCommandHandler
+    ) {
+    }
+
     #[Route('/auth/login', methods: ['POST'], name: 'login')]
-    public function __invoke(): JsonResponse
+    public function __invoke(LoginUserRequest $userDTO): JsonResponse
     {
-        return new JsonResponse(['message' => 'Login']);
+        $user = [
+            "email" => $userDTO->email,
+            "password" => $userDTO->password
+        ];
+
+        $loginUserCommand = $this->serializer->deserialize($user, LoginUserCommand::class);
+        $this->loginUserCommandHandler->__invoke($loginUserCommand);
+
+        return new JsonResponse($userDTO, JsonResponse::HTTP_OK);
     }
 }

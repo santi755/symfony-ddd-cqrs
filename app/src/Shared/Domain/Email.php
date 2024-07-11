@@ -12,9 +12,9 @@ class Email
         $this->value = $value;
     }
 
-    public static function fromPrimitive(string $emailString): Email
+    public static function fromPrimitive(string $email): Email
     {
-        return new static($emailString);
+        return new static($email);
     }
 
     public function getValue(): string

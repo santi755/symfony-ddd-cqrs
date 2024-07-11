@@ -13,13 +13,18 @@ class Password
         $this->value = $value;
     }
 
-    public static function fromPrimitive(string $value): Password
+    public static function generate(string $value): Password
     {
         if (strlen($value) < 8) {
             throw new \InvalidArgumentException('Password must be at least 8 characters long');
         }
 
         return new static(password_hash($value, PASSWORD_BCRYPT));
+    }
+
+    public static function fromPrimitive(string $value): Password
+    {
+        return new static($value);
     }
 
     public static function of(string $value): Password

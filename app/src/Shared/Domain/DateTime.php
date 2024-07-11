@@ -6,7 +6,7 @@ use DateTimeImmutable;
 
 class DateTime
 {
-    protected function __construct(private DateTimeImmutable $value)
+    protected function __construct(private ?DateTimeImmutable $value)
     {
     }
 
