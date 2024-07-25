@@ -11,28 +11,33 @@ use App\Auth\Domain\UserId;
 use App\Auth\Domain\UserPassword;
 use App\Shared\Domain\Serializer\Serializer;
 use App\Auth\Domain\UserRepository;
+use App\Auth\Domain\Authentication\GeneratePassword;
 
 class RegisterUserCommandHandler
 {
     public function __construct(
         private Serializer $serializer,
-        private UserRepository $userRepository
+        private UserRepository $userRepository,
+        private GeneratePassword $generatePassword
     ) {
     }
 
     public function __invoke(RegisterUserCommand $command): void
     {
-        $user = $this->serializer->serialize($command);
+        $userSerialized = $this->serializer->serialize($command);
 
         $user = new User(
             UserId::generate(),
-            $user['name'],
-            UserEmail::fromPrimitive($user['email']),
-            UserPassword::generate($user['password']),
+            $userSerialized['name'],
+            UserEmail::fromPrimitive($userSerialized['email']),
+            UserPassword::generate($userSerialized['password']),
             UserCreatedAt::generate(),
             UserUpdatedAt::generate(),
             null
         );
+
+        $encodedPassword = $this->generatePassword->generate($user, $userSerialized['password']);
+        $user->updatePassword(UserPassword::generate($encodedPassword));
 
         // TODO: Check is the user already exists (by email)
         $this->userRepository->save($user);

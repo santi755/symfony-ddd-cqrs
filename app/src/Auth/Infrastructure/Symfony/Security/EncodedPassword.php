@@ -6,8 +6,7 @@ namespace App\Auth\Infrastructure\Symfony\Security;
 
 
 use App\Auth\Domain\User;
-use App\Auth\Domain\UserEmail;
-use App\Shared\Domain\Authentication\GeneratePassword;
+use App\Auth\Domain\Authentication\GeneratePassword;
 use App\Shared\Domain\Serializer\Serializer;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 

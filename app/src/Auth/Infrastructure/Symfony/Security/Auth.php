@@ -5,6 +5,7 @@ namespace App\Auth\Infrastructure\Symfony\Security;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+// https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
 final class Auth implements UserInterface, PasswordAuthenticatedUserInterface
 {
     public function __construct(

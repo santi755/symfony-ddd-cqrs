@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\Domain\Authentication;
+namespace App\Auth\Domain\Authentication;
 
 use App\Auth\Domain\User;
 

@@ -21,4 +21,9 @@ class User
         private ?UserDeletedAt $deletedAt
     ) {
     }
+
+    public function updatePassword(UserPassword $password): void
+    {
+        $this->password = $password;
+    }
 }
