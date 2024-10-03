@@ -14,8 +14,7 @@ final class UserProvider implements UserProviderInterface
     public function __construct(
         private UserRepository $userRepository,
         private Serializer $serializer
-    ) {
-    }
+    ) {}
 
     public function refreshUser(UserInterface $user): UserInterface
     {

@@ -16,8 +16,7 @@ class LoginUserController extends AbstractController
     public function __construct(
         private Serializer $serializer,
         private LoginUserCommandHandler $loginUserCommandHandler
-    ) {
-    }
+    ) {}
 
     #[Route('/api/auth/login', methods: ['POST'], name: 'login')]
     public function __invoke(LoginUserRequest $userDTO): JsonResponse
@@ -28,8 +27,8 @@ class LoginUserController extends AbstractController
         ];
 
         $loginUserCommand = $this->serializer->deserialize($user, LoginUserCommand::class);
-        $this->loginUserCommandHandler->__invoke($loginUserCommand);
+        $userLogged = $this->loginUserCommandHandler->__invoke($loginUserCommand);
 
-        return new JsonResponse($userDTO, JsonResponse::HTTP_OK);
+        return new JsonResponse($userLogged, JsonResponse::HTTP_OK);
     }
 }

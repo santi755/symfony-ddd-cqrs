@@ -12,10 +12,9 @@ class LoginUserCommandHandler
     public function __construct(
         private Serializer $serializer,
         private UserRepository $userRepository
-    ) {
-    }
+    ) {}
 
-    public function __invoke(LoginUserCommand $command): void
+    public function __invoke(LoginUserCommand $command): array
     {
         $user = $this->serializer->serialize($command);
         $userEmail = UserEmail::fromPrimitive($user['email']);
@@ -29,5 +28,7 @@ class LoginUserCommandHandler
         }
 
         $userRegisteredSerialized = $this->serializer->serialize($userRegistered);
+
+        return $userRegisteredSerialized;
     }
 }

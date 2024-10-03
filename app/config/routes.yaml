@@ -3,3 +3,6 @@ auth_controllers:
     path: ../src/Auth/Infrastructure/Symfony/Controllers
     namespace: App\Auth\Infrastructure\Symfony\Controllers
   type: attribute
+
+api_login_check:
+  path: /api/auth/login
