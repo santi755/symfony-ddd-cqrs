@@ -10,16 +10,34 @@ use App\Shared\Domain\Serializer\Serializer;
 
 use App\Auth\Infrastructure\Symfony\Controllers\Request\LoginUserRequest;
 use App\Auth\Application\Command\LoginUserCommandHandler;
+use App\Auth\Domain\User;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class LoginUserController extends AbstractController
 {
     public function __construct(
         private Serializer $serializer,
-        private LoginUserCommandHandler $loginUserCommandHandler
+        private LoginUserCommandHandler $loginUserCommandHandler,
+        private Security $security
     ) {}
 
-    #[Route('/api/auth/login', methods: ['POST'], name: 'login')]
-    public function __invoke(LoginUserRequest $userDTO): JsonResponse
+    #[Route('/api/auth/me', methods: ['GET'], name: 'me')]
+    public function __invoke(): JsonResponse
+    {
+        $user = $this->security->getUser();
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'Unauthorized'], 401);
+        }
+
+        $userSerialized = $this->serializer->serialize($user, User::class);
+
+        return new JsonResponse($userSerialized, JsonResponse::HTTP_OK);
+    }
+
+    /*
+        #[Route('/api/auth/me', methods: ['GET'], name: 'me')]
+    public function __invoke(): JsonResponse
     {
         $user = [
             "email" => $userDTO->email,
@@ -31,4 +49,5 @@ class LoginUserController extends AbstractController
 
         return new JsonResponse($userLogged, JsonResponse::HTTP_OK);
     }
+    */
 }
