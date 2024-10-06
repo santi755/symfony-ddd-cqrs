@@ -39,6 +39,6 @@ final class UserProvider implements UserProviderInterface
 
         $userSerialized = $this->serializer->serialize($user);
 
-        return new Auth($identifier, $userSerialized['password']['value']);
+        return new Auth($identifier, $userSerialized['password']['value'], $userSerialized['roles']['value']);
     }
 }

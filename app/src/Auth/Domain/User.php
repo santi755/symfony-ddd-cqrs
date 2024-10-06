@@ -8,6 +8,7 @@ use App\Auth\Domain\UserPassword;
 use App\Auth\Domain\UserCreatedAt;
 use App\Auth\Domain\UserUpdatedAt;
 use App\Auth\Domain\UserDeletedAt;
+use App\Auth\Domain\UserRoles;
 
 class User
 {
@@ -18,9 +19,9 @@ class User
         private UserPassword $password,
         private UserCreatedAt $createdAt,
         private UserUpdatedAt $updatedAt,
-        private ?UserDeletedAt $deletedAt
-    ) {
-    }
+        private ?UserDeletedAt $deletedAt,
+        private UserRoles $roles
+    ) {}
 
     public function updatePassword(UserPassword $password): void
     {

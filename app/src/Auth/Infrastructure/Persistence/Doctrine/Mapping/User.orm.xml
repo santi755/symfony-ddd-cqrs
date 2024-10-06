@@ -12,5 +12,6 @@
         <field name="createdAt" type="user_created_at" column="created_at" nullable="false"/>
         <field name="updatedAt" type="user_updated_at" column="updated_at" nullable="true"/>
         <field name="deletedAt" type="user_deleted_at" column="deleted_at" nullable="true"/>
+        <field name="roles" type="user_roles" column="roles" nullable="false"/>
     </entity>
 </doctrine-mapping>

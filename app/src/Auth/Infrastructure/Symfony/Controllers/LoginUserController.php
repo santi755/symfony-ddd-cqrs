@@ -24,6 +24,13 @@ class LoginUserController extends AbstractController
     #[Route('/api/auth/me', methods: ['GET'], name: 'me')]
     public function __invoke(): JsonResponse
     {
+        return new JsonResponse(
+            [
+                'llega' => 'hola'
+            ],
+            JsonResponse::HTTP_OK
+        );
+
         $user = $this->security->getUser();
 
         if (!$user) {
@@ -34,20 +41,4 @@ class LoginUserController extends AbstractController
 
         return new JsonResponse($userSerialized, JsonResponse::HTTP_OK);
     }
-
-    /*
-        #[Route('/api/auth/me', methods: ['GET'], name: 'me')]
-    public function __invoke(): JsonResponse
-    {
-        $user = [
-            "email" => $userDTO->email,
-            "password" => $userDTO->password
-        ];
-
-        $loginUserCommand = $this->serializer->deserialize($user, LoginUserCommand::class);
-        $userLogged = $this->loginUserCommandHandler->__invoke($loginUserCommand);
-
-        return new JsonResponse($userLogged, JsonResponse::HTTP_OK);
-    }
-    */
 }

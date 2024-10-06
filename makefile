@@ -4,7 +4,6 @@ DOCKER_COMPOSE = docker compose
 EXEC = $(DOCKER) exec -it php-fpm
 PHP = $(EXEC) php
 COMPOSER = $(EXEC) composer
-NPM = $(EXEC) npm
 SYMFONY_CONSOLE = $(PHP) bin/console
 
 # Colors
@@ -18,7 +17,6 @@ init: ## Init the project
 	$(MAKE) start
 	$(COMPOSER) create-project symfony/skeleton:"7.1.*" .
 	$(COMPOSER) require symfony/webpack-encore-bundle
-	$(MAKE) npm-install
 	@$(call GREEN,"The application is available at: http://127.0.0.1:80/.")
 	@$(call GREEN,"The Pgadmin is available at: http://127.0.0.1:5000/.")
 
@@ -79,15 +77,8 @@ composer-update: ## Update dependencies
 composer-clear-cache: ## clear-cache dependencies
 	$(COMPOSER) clear-cache
 
-## —— 🐈 NPM —————————————————————————————————————————————————————————————————
-npm-install: ## Install all npm dependencies
-	$(NPM) install
-
-npm-update: ## Update all npm dependencies
-	$(NPM) update
-
-npm-watch: ## Update all npm dependencies
-	$(NPM) run watch
+bash: ## Open a bash shell
+	$(DOCKER) exec -it php-fpm bash
 
 ## —— 📊 Database —————————————————————————————————————————————————————————————————
 database-init: ## Init database

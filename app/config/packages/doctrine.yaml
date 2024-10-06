@@ -21,6 +21,8 @@ doctrine:
         class: App\Auth\Infrastructure\Persistence\Doctrine\Types\UserUpdatedAtType
       user_deleted_at:
         class: App\Auth\Infrastructure\Persistence\Doctrine\Types\UserDeletedAtType
+      user_roles:
+        class: App\Auth\Infrastructure\Persistence\Doctrine\Types\UserRolesType
   orm:
     auto_generate_proxy_classes: true
     enable_lazy_ghost_objects: true

@@ -10,9 +10,9 @@ final class Auth implements UserInterface, PasswordAuthenticatedUserInterface
 {
     public function __construct(
         private string $email,
-        private string $password
-    ) {
-    }
+        private string $password,
+        private array $roles
+    ) {}
 
     public function getUserIdentifier(): string
     {
@@ -26,7 +26,7 @@ final class Auth implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        return [];
+        return $this->roles ?? [];
     }
 
     public function getSalt(): ?string
@@ -34,7 +34,5 @@ final class Auth implements UserInterface, PasswordAuthenticatedUserInterface
         return null;
     }
 
-    public function eraseCredentials(): void
-    {
-    }
+    public function eraseCredentials(): void {}
 }
