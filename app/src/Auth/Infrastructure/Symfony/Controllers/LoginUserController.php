@@ -24,13 +24,6 @@ class LoginUserController extends AbstractController
     #[Route('/api/auth/me', methods: ['GET'], name: 'me')]
     public function __invoke(): JsonResponse
     {
-        return new JsonResponse(
-            [
-                'llega' => 'hola'
-            ],
-            JsonResponse::HTTP_OK
-        );
-
         $user = $this->security->getUser();
 
         if (!$user) {
