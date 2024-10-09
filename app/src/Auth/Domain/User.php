@@ -23,7 +23,7 @@ class User
         private UserRoles $roles
     ) {}
 
-    public function updatePassword(UserPassword $password): void
+    public function changePassword(UserPassword $password): void
     {
         $this->password = $password;
     }

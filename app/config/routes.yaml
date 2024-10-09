@@ -1,7 +1,7 @@
 auth_controllers:
   resource:
-    path: ../src/Auth/Infrastructure/Symfony/Controllers
-    namespace: App\Auth\Infrastructure\Symfony\Controllers
+    path: ../src/Auth/Infrastructure/Symfony/Http/Get
+    namespace: App\Auth\Infrastructure\Symfony\Http\Get
   type: attribute
 
 api_login_check:

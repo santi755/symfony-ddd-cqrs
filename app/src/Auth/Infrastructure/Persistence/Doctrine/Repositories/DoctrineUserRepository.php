@@ -3,7 +3,7 @@
 namespace App\Auth\Infrastructure\Persistence\Doctrine\Repositories;
 
 use App\Auth\Domain\User;
-use App\Auth\Domain\UserId;
+use App\Auth\Domain\UserEmail;
 use App\Auth\Domain\UserRepository;
 use App\Shared\Infrastructure\Persistence\Doctrine\Repository\DoctrineRepository;
 
@@ -15,9 +15,9 @@ class DoctrineUserRepository extends DoctrineRepository implements UserRepositor
         $this->entityManager()->flush();
     }
 
-    public function find(UserId $userId): ?User
+    public function find(UserEmail $userEmail): ?User
     {
-        return $this->repository(User::class)->find($userId);
+        return $this->repository(User::class)->findOneBy(['email' => $userEmail]);
     }
 
     public function findOneBy(array $criteria): ?User

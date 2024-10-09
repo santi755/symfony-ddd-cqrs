@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Auth\Infrastructure\Symfony\Controllers;
+namespace App\Auth\Infrastructure\Symfony\Http\Get;
 
+use App\Auth\Domain\User;
+use App\Auth\Infrastructure\Symfony\Security\CurrentUserProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Shared\Domain\Serializer\Serializer;
-
-use App\Auth\Domain\User;
 use Symfony\Bundle\SecurityBundle\Security;
 
 class UserProfileController extends AbstractController
@@ -18,9 +18,9 @@ class UserProfileController extends AbstractController
     ) {}
 
     #[Route('/api/auth/me', methods: ['GET'], name: 'me')]
-    public function __invoke(): JsonResponse
+    public function __invoke(CurrentUserProvider $userProvider): JsonResponse
     {
-        $user = $this->security->getUser();
+        $user = $userProvider->get();
 
         if (!$user) {
             return new JsonResponse(['error' => 'Unauthorized'], 401);
