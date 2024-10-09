@@ -37,6 +37,11 @@ doctrine:
         dir: "%kernel.project_dir%/src/Auth/Infrastructure/Persistence/Doctrine/Mapping"
         prefix: 'App\Auth\Domain'
         alias: User
+      RefreshToken:
+        is_bundle: false
+        dir: "%kernel.project_dir%/src/Auth/Infrastructure/Persistence/Doctrine/Entities"
+        prefix: 'App\Auth\Infrastructure\Persistence\Doctrine\Entities'
+        alias: RefreshToken
     controller_resolver:
       auto_mapping: false
 

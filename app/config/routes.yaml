@@ -6,3 +6,6 @@ auth_controllers:
 
 api_login_check:
   path: /api/auth/login
+
+api_refresh_token_check:
+  path: /api/auth/token/refresh
