@@ -21,13 +21,16 @@ class UserProfileController extends AbstractController
     public function __invoke(CurrentUserProvider $userProvider): JsonResponse
     {
         $user = $userProvider->get();
-
         if (!$user) {
             return new JsonResponse(['error' => 'Unauthorized'], 401);
         }
 
-        $userSerialized = $this->serializer->serialize($user, User::class);
+        $userSerialized = $this->serializer->serialize($user);
 
-        return new JsonResponse($userSerialized, JsonResponse::HTTP_OK);
+        return new JsonResponse([
+            'id' => $userSerialized['id']['value'],
+            'name' => $userSerialized['name'],
+            'email' => $userSerialized['email']['value'],
+        ], JsonResponse::HTTP_OK);
     }
 }
